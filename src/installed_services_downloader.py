@@ -29,7 +29,7 @@ class InvalidRemoteService(Exception):
     """Remote service is invalid."""
 
 
-class InstalledServicesHandler:
+class InstalledServicesDownloader:
     """Service that handles the installed services of the service and updates the local iombian services accordingly.
 
     To start the service call `read_local_services` and then `start`.
@@ -214,14 +214,14 @@ class InstalledServicesHandler:
 
     def start(self):
         """Start the listener, the `on_snapshot()` function, for tracking changes on firebase."""
-        logger.info("Installed Services Handler started.")
+        logger.info("Installed Services Downloader started.")
         self.watch = self.device.collection("installed_services").on_snapshot(
             self._on_installed_service_change
         )
 
     def stop(self):
-        logger.info("Installed Services Handler stopped.")
-        """Stop the handler by stopping the listener."""
+        logger.info("Installed Services Downloader stopped.")
+        """Stop the downloader by stopping the listener."""
         if self.watch is not None:
             self.watch.unsubscribe()
 

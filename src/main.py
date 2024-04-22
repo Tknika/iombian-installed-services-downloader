@@ -3,7 +3,7 @@ import os
 
 from communication_module import CommunicationModule
 from default_firestore_client import DefaultFirestoreClient
-from installed_services_handler import InstalledServicesHandler
+from installed_services_downloader import InstalledServicesDownloader
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", logging.DEBUG)
 CONFIG_HOST = os.environ.get("CONFIG_HOST", "127.0.0.1")
@@ -30,8 +30,8 @@ if __name__ == "__main__":
     if client.client is None or client.user_id is None:
         exit()
 
-    installed_services_handler = InstalledServicesHandler(
+    installed_services_downloader = InstalledServicesDownloader(
         client.client, client.user_id, device_id, BASE_PATH
     )
-    installed_services_handler.read_local_services()
-    installed_services_handler.start()
+    installed_services_downloader.read_local_services()
+    installed_services_downloader.start()
