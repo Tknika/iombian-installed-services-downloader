@@ -51,7 +51,7 @@ class InstalledServicesDownloader:
     def __init__(
         self, client: Client, user_id: str, device_id: str, base_path: str
     ) -> None:
-        self.clinet = client
+        self.client = client
         self.user_id = user_id
         self.device_id = device_id
         self.device = (
@@ -161,7 +161,7 @@ class InstalledServicesDownloader:
             return None
 
         service_dict = (
-            self.clinet.collection("services")
+            self.client.collection("services")
             .document(service_name)
             .collection("versions")
             .document(version)
