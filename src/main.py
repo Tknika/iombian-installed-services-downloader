@@ -24,11 +24,14 @@ if __name__ == "__main__":
     refresh_token = str(comm_module.execute_command("get_refresh_token"))
     device_id = str(comm_module.execute_command("get_device_id"))
 
+    if not (api_key and project_id and refresh_token and device_id):
+        exit("Wasn't able to get the necessary information from the config file handler")
+
     client = DefaultFirestoreClient(api_key, project_id, refresh_token)
     client.initialize_client()
 
     if client.client is None or client.user_id is None:
-        exit()
+        exit("The firebase client was not created correctly")
 
     installed_services_downloader = InstalledServicesDownloader(
         client.client, client.user_id, device_id, BASE_PATH
