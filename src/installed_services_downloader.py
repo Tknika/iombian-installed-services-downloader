@@ -294,7 +294,8 @@ class InstalledServicesDownloader:
 
             elif change.type == ChangeType.REMOVED:
                 self.remove_service(service_name)
-                self.services.remove(service_name)
+                if service_name in self.services:
+                    self.services.remove(service_name)
 
             elif change.type == ChangeType.MODIFIED:
                 self.remove_service(service_name)
