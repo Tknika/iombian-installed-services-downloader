@@ -48,6 +48,27 @@ The volume passed is the **/opt/iombian-services** and is the folder where the i
     This can be DEBUG, INFO, WARN or ERROR.
     Default value is INFO.
 
+```
+version: 3
+
+services:
+  iombian-installed-services-downloader:
+    image: iombian-installed-services-downloader
+    container_name: iombian-installed-services-downloader
+    restart: unless_stopped
+    volumes:
+      - /opt/iombian-services:/opt/iombian-services
+    environment:
+      CONFIG_HOST: "iombian-config-file-handler"
+      CONFIG_PORT: 5555
+      BASE_PATH: "/opt/iombian-services"
+      LOG_LEVEL: "INFO"
+```
+
+```
+docker compose up -d
+```
+
 ## Author
 (c) 2024 IoMBian team ([Aitor Iturrioz Rodríguez](https://github.com/bodiroga), [Aitor Castaño Mesa](https://github.com/aitorcas23)).
 
