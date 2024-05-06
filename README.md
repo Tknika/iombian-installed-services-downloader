@@ -48,6 +48,8 @@ The volume passed is the **/opt/iombian-services** and is the folder where the i
     This can be DEBUG, INFO, WARN or ERROR.
     Default value is INFO.
 
+Otherwise, a `docker-compose.yml` file can also be used to launch the container:
+
 ```
 version: 3
 
