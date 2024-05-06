@@ -55,7 +55,7 @@ version: 3
 
 services:
   iombian-installed-services-downloader:
-    image: iombian-installed-services-downloader
+    image: iombian-installed-services-downloader:latest
     container_name: iombian-installed-services-downloader
     restart: unless_stopped
     volumes:
