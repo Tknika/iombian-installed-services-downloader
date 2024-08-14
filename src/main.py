@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import logging
 import os
 import signal
@@ -5,7 +7,7 @@ import signal
 from communication_module import CommunicationModule
 from installed_services_downloader import InstalledServicesDownloader
 
-LOG_LEVEL = os.environ.get("LOG_LEVEL", logging.INFO)
+LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 CONFIG_HOST = os.environ.get("CONFIG_HOST", "127.0.0.1")
 CONFIG_PORT = int(os.environ.get("CONFIG_PORT", 5555))
 BASE_PATH = os.environ.get("BASE_PATH", "/opt/iombian-services")
@@ -17,12 +19,14 @@ logger = logging.getLogger(__name__)
 
 
 def signal_handler(sig, frame):
-    logger.warn("Stopping the service")
+    logger.info("Stopping IoMBian Installed Services Downloader Service")
     comm_module.stop()
     installed_services_downloader.stop()
 
 
 if __name__ == "__main__":
+    logger.info("Starting IoMBian Installed Services Downloader Service")
+
     comm_module = CommunicationModule(host=CONFIG_HOST, port=CONFIG_PORT)
     comm_module.start()
 
